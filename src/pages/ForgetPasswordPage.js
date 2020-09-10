@@ -1,16 +1,16 @@
 import React from 'react';
 import Form from '../components/Form';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 import FormCard from '../components/FormCard';
 import * as API from '../utils/apiURL'
 import {Link} from 'react-router-dom';
 
-class LoginPage extends React.Component {
+class ForgetPasswordPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "", 
-            password: "",
+            email: "",
+            username: "",
             showError: "none",
             errorMessage: "",
         };
@@ -26,21 +26,22 @@ class LoginPage extends React.Component {
     }
     
     handleSubmit() {
-        if(this.state.username === "") {
+        if(this.state.email === "") {
+            this.setState({
+                showError: "block",
+                errorMessage: "Email can not be empty"
+            });
+        }else if(this.state.username === "") {
             this.setState({
                 showError: "block",
                 errorMessage: "Username can not be empty"
             });
-        }else if(this.state.password === "") {
-            this.setState({
-                showError: "block",
-                errorMessage: "Password can not be empty"
-            });
         }else  {
-            const url = API.login_url;
+            const url = API.forget_password;
+            console.log(url);
             const body = {
-                username: this.state.username,
-                password: this.state.password
+                email: this.state.email,
+                username: this.state.username
             };
 
             const headers = {
@@ -53,11 +54,12 @@ class LoginPage extends React.Component {
                 json: true,
                 headers
             };
+
             fetch(url,jsonRequest).then(response => response.json()).then(data => {
                 if(data["status"] === "Failed") {
                     this.setState({
-                        showError: "none",
-                        errorMessage: "Username or Password does not match"
+                        showError: "block",
+                        errorMessage: "Email and Username does not match"
                     });
                 }else {
                     this.setState({
@@ -76,20 +78,13 @@ class LoginPage extends React.Component {
                 <img src={logo} alt="logo" style={{width: '50%'}}/>
                 <FormCard width='50%'>
                     <div style={{textAlign: 'left'}}>
+                        <Form label='Email' value={this.state.email} onChange={event => this.handleChange(event, "email")}/>
                         <Form label='Username' value={this.state.username} onChange={event => this.handleChange(event, "username")}/>
-                        <Form label='Password' value={this.state.password} onChange={event => this.handleChange(event, "password")}/>
                         <p className='errorText' style={{color: 'red', display: this.state.showError, textAlign: 'right'}}>{this.state.errorMessage}</p>
-                        <button className='ui teal button' onClick={event => this.handleSubmit(event)} style={{width: '100%', marginTop: '10px'}}>Login</button>
+                        <button className='ui teal button' onClick={event => this.handleSubmit(event)} style={{width: '100%', marginTop: '10px'}}>Forget Password</button>
                         <div style={{textAlign: 'center', marginTop: '5px'}}>
-                            <div>
-                                <label>Do not have an account ? </label>
-                                <Link to="/register"
-                                    style={{textDecoration: 'underline', color: 'blue', marginLeft: '3px'}}>Register</Link>
-                            </div>
-                            <div style={{marginTop: '5px'}}> 
-                                <Link to="/forgetpassword" 
-                                    style={{color: 'aqua', marginLeft: '3px'}}>Forget Password</Link>
-                            </div>
+                            <Link to="/login" 
+                                style={{color: 'blue', marginLeft: '3px'}}>Back to Sign In</Link>
                         </div>
                     </div>
                 </FormCard>
@@ -98,4 +93,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage
+export default ForgetPasswordPage

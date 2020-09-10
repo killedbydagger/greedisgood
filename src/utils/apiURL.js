@@ -3,5 +3,6 @@ const base_url = "http://127.0.0.1:8000";
 
 const login_url = base_url+"/login";
 const register_url = base_url+"/register";
+const forget_password = base_url+"/forgetpassword";
 
-export {login_url, register_url};
+export {login_url, register_url, forget_password};
