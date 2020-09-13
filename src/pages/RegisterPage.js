@@ -112,16 +112,16 @@ class RegisterPage extends React.Component {
 
     render() {
         return (
-            <div style={{width: '35%', margin:'0 auto', textAlign:'center', paddingBottom: '5px'}}>
+            <div style={{width: '45%', margin:'0 auto', textAlign:'center', paddingBottom: '5px'}}>
                 <img src={logo} alt="logo" style={{width: '50%'}}/>
-                <FormCard width='60%'>
+                <FormCard width='50%'>
                     <div style={{textAlign: 'left'}}>
-                        <Form label='First Name' value={this.state.first_name} onChange={event => this.handleChange(event, "first_name")}/>
-                        <Form label='Last Name' value={this.state.last_name} onChange={event => this.handleChange(event, "last_name")}/>
-                        <Form label='Email' value={this.state.email} onChange={event => this.handleChange(event, "email")}/>
-                        <Form label='Username' value={this.state.username} onChange={event => this.handleChange(event, "username")}/>
-                        <Form label='Password' value={this.state.password} onChange={event => this.handleChange(event, "password")}/>
-                        <Form label='Confirm Password' value={this.state.confirmation} onChange={event => this.handleChange(event, "confirmation")}/>
+                        <Form label='First Name' value={this.state.first_name} onChange={event => this.handleChange(event, "first_name")} type="text"/>
+                        <Form label='Last Name' value={this.state.last_name} onChange={event => this.handleChange(event, "last_name")} type="text"/>
+                        <Form label='Email' value={this.state.email} onChange={event => this.handleChange(event, "email")} type="text"/>
+                        <Form label='Username' value={this.state.username} onChange={event => this.handleChange(event, "username")} type="text"/>
+                        <Form label='Password' value={this.state.password} onChange={event => this.handleChange(event, "password")} type="password"/>
+                        <Form label='Confirm Password' value={this.state.confirmation} onChange={event => this.handleChange(event, "confirmation")} type="password"/>
                         <p className='errorText' style={{color: 'red', display: this.state.showError, textAlign: 'right'}}>{this.state.errorMessage}</p>
                         <button className={this.state.classButton} onClick={event => this.handleSubmit(event)} style={{width: '100%', marginTop: '10px'}}>Register</button>
                         <div style={{textAlign: 'center', marginTop: '5px'}}>

@@ -74,12 +74,12 @@ class ForgetPasswordPage extends React.Component {
 
     render() {
         return (
-            <div style={{width: '35%', margin:'0 auto', textAlign:'center', paddingBottom: '5px'}}>
+            <div style={{width: '45%', margin:'0 auto', textAlign:'center', paddingBottom: '5px'}}>
                 <img src={logo} alt="logo" style={{width: '50%'}}/>
                 <FormCard width='50%'>
                     <div style={{textAlign: 'left'}}>
-                        <Form label='Email' value={this.state.email} onChange={event => this.handleChange(event, "email")}/>
-                        <Form label='Username' value={this.state.username} onChange={event => this.handleChange(event, "username")}/>
+                        <Form label='Email' value={this.state.email} onChange={event => this.handleChange(event, "email")} type="text"/>
+                        <Form label='Username' value={this.state.username} onChange={event => this.handleChange(event, "username")} type="text"/>
                         <p className='errorText' style={{color: 'red', display: this.state.showError, textAlign: 'right'}}>{this.state.errorMessage}</p>
                         <button className='ui teal button' onClick={event => this.handleSubmit(event)} style={{width: '100%', marginTop: '10px'}}>Forget Password</button>
                         <div style={{textAlign: 'center', marginTop: '5px'}}>

@@ -6,7 +6,7 @@ const Form = (props) => {
             <label htmlFor={props.label + 'Input'} style={{marginBottom:'5px', display:'block'}}>{props.label}</label>
             <div className="field ui input focus" style={{display:'flex'}}>
                 <input className={props.label + 'Input'}
-                    type="text" 
+                    type={props.type}
                     placeholder={props.label}
                     value={props.value} 
                     onChange={event => props.onChange(event, "username")}
